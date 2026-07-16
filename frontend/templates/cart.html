@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UrbanWear | Shopping Cart</title>
+
+    <link rel="stylesheet" href="/static/css/cart.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="/home" class="logo">
+            UrbanWear.
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/products-page">
+                Products
+            </a>
+
+            <a href="/cart-page">
+                Cart
+            </a>
+
+            <a href="/login-page" id="authLink">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <h1>Shopping Cart</h1>
+
+        <p id="cartCount"></p>
+
+    </section>
+
+    <!-- ================= CART ================= -->
+
+    <section class="cart-wrapper">
+
+        <!-- Cart Items -->
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+
+            <div
+                class="loading"
+                id="loadingMsg"
+            >
+
+                Loading your cart...
+
+            </div>
+
+        </div>
+
+        <!-- Order Summary -->
+
+        <aside
+            class="order-summary"
+            id="orderSummary"
+            style="display:none;"
+        >
+
+            <h3>
+
+                Order Summary
+
+            </h3>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="subtotal">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Shipping</span>
+
+                <span>
+
+                    FREE
+
+                </span>
+
+            </div>
+
+            <hr>
+
+            <div class="summary-row total">
+
+                <span>Total</span>
+
+                <span id="totalAmount">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+            <button
+                class="btn-checkout"
+                onclick="window.location.href='/checkout-page'"
+            >
+
+                Proceed to Checkout
+
+            </button>
+
+            <a
+                href="/products-page"
+                class="btn-continue"
+            >
+
+                ← Continue Shopping
+
+            </a>
+
+        </aside>
+
+    </section>
+
+    <!-- ================= EMPTY CART ================= -->
+
+    <section
+        class="empty-cart"
+        id="emptyCart"
+        style="display:none;"
+    >
+
+        <h2>
+
+            Your Cart is Empty
+
+        </h2>
+
+        <p>
+
+            Looks like you haven't added any products yet.
+
+        </p>
+
+        <a
+            href="/products-page"
+            class="btn-shop"
+        >
+
+            Start Shopping
+
+        </a>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <script src="/static/js/cart.js"></script>
+
+</body>
+
+</html>

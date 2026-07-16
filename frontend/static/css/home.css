@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    color: #222;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-decoration: none;
+    color: #222;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* HERO */
+.hero {
+    background-color: #f0f0f0;
+    padding: 100px 60px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center top;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+.hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 16px;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+}
+
+.hero-sub {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: #222;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.btn-hero:hover {
+    background-color: #444;
+}
+
+/* CATEGORIES */
+.categories {
+    padding: 70px 60px;
+}
+
+.categories h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.category-card {
+    text-decoration: none;
+    color: #222;
+}
+
+.category-img {
+    height: 280px;
+    background-color: #e0e0e0;
+    margin-bottom: 12px;
+}
+
+.category-img.men {
+    background-image: url('../images/men-category.jpg');
+    background-size: cover;
+    background-position: top;
+}
+
+.category-img.women {
+    background-image: url('../images/women-category.jpg');
+    background-size: cover;
+    background-position: top;
+}
+
+.category-img.kids {
+    background-image: url('../images/kids-category.jpg');
+    background-size: cover;
+    background-position: top;
+}
+
+.category-card p {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.category-card:hover .category-img {
+    opacity: 0.85;
+}
+
+/* FEATURED PRODUCTS */
+.featured {
+    padding: 70px 60px;
+    background-color: #f7f7f7;
+}
+
+.featured h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.product-card-img {
+    width: 100%;
+    height: 220px;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.product-card-info {
+    padding: 14px;
+}
+
+.product-card-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.product-card-category {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.product-card-price {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* VIEW ALL */
+.view-all {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 13px 36px;
+    border: 1.5px solid #222;
+    color: #222;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+/* FOOTER */
+.footer {
+    padding: 30px 60px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 1px;
+}

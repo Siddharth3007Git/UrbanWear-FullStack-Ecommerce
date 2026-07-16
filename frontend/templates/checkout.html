@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UrbanWear | Checkout</title>
+
+    <link rel="stylesheet" href="/static/css/checkout.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="/home" class="logo">
+            UrbanWear.
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/products-page">
+                Products
+            </a>
+
+            <a href="/cart-page">
+                Cart
+            </a>
+
+            <a href="/login-page" id="authLink">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <h1>
+
+            Checkout
+
+        </h1>
+
+        <p>
+
+            Review your order before placing it.
+
+        </p>
+
+    </section>
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <section class="checkout-wrapper">
+
+        <!-- LEFT -->
+
+        <div class="checkout-left">
+
+            <h3>
+
+                Order Items
+
+            </h3>
+
+            <div
+                id="orderItems"
+                class="order-items"
+            >
+
+                <div class="loading">
+
+                    Loading...
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <aside class="checkout-right">
+
+            <h3>
+
+                Order Summary
+
+            </h3>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="subtotal">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Shipping</span>
+
+                <span>
+
+                    FREE
+
+                </span>
+
+            </div>
+
+            <hr>
+
+            <div class="summary-row total">
+
+                <span>Total</span>
+
+                <span id="totalAmount">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+            <!-- PAYMENT -->
+
+            <h3 class="payment-title">
+
+                Payment Method
+
+            </h3>
+
+            <div class="payment-options">
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="COD"
+                        checked
+                    >
+
+                    Cash on Delivery
+
+                </label>
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Online"
+                    >
+
+                    Online Payment
+
+                </label>
+
+            </div>
+
+            <!-- Messages -->
+
+            <div
+                id="errorMsg"
+                class="error-msg"
+            ></div>
+
+            <div
+                id="successMsg"
+                class="success-msg"
+            ></div>
+
+            <!-- Buttons -->
+
+            <button
+                id="placeOrderBtn"
+                class="btn-place-order"
+                onclick="placeOrder()"
+            >
+
+                PLACE ORDER
+
+            </button>
+
+            <a
+                href="/cart-page"
+                class="btn-back"
+            >
+
+                ← Back to Cart
+
+            </a>
+
+        </aside>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <script src="/static/js/checkout.js"></script>
+
+</body>
+
+</html>
