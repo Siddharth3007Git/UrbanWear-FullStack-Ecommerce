@@ -1257,3 +1257,28 @@ If you found this project helpful:
 ![GitHub language count](https://img.shields.io/github/languages/count/Siddharth3007Git/UrbanWear)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/Siddharth3007Git/UrbanWear)
+
+# 📬 Contact
+
+If you'd like to connect, collaborate, or discuss this project, feel free to reach out.
+
+<div align="center">
+
+### 👨‍💻 Siddharth Jagadale
+
+🎓 Information Technology Student  
+💻 Python | FastAPI | AI & Machine Learning Enthusiast
+
+📧 **Email:** siddharthjagadale50@gmail.com
+
+🐙 **GitHub:**  
+https://github.com/Siddharth3007Git
+
+💼 **LinkedIn:**  
+https://www.linkedin.com/in/siddharthjagadale/
+
+</div>
+
+---
+
+⭐ If you found this project helpful, please consider **starring the repository**!
