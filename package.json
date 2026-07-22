@@ -1,0 +1,15 @@
+{
+  "name": "urbanwear-screenshots",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "playwright:install": "playwright install --with-deps",
+    "screenshots": "playwright test tests/screenshots.spec.ts",
+    "screenshots:headed": "playwright test tests/screenshots.spec.ts --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "typescript": "^5.9.2"
+  }
+}

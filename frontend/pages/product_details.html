@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    
+
+    <title>UrbanWear | Product Details</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    
+    
+    
+
+    <link rel="stylesheet"
+          href="../assets/css/product_details.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================
+            NAVBAR
+    =========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="home.html">
+
+                UrbanWear
+
+            </a>
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+
+                <a href="home.html">
+
+                    Home
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="products.html">
+
+                    Products
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="cart.html">
+
+                    Cart
+
+                    <span id="cartCount">
+
+                        0
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="orders.html">
+
+                    Orders
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="profile.html">
+
+                    Profile
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <button id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </nav>
+
+    <!-- ==========================
+            LOADER
+    =========================== -->
+
+    <div id="loader" class="loader">
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        <p>Loading Product...</p>
+
+    </div>
+
+    <!-- ==========================
+        PRODUCT DETAILS
+    =========================== -->
+
+    <section id="productSection"
+             class="product-section"
+             style="display:none;">
+
+        <div class="product-container">
+
+            <!-- Image -->
+
+            <div class="product-image-box">
+
+                <img id="productImage"
+                     src=""
+                     alt="Product Image">
+
+            </div>
+
+            <!-- Details -->
+
+            <div class="product-details">
+
+                <h1 id="productName">
+
+                    Product Name
+
+                </h1>
+
+                <p id="productCategory"
+                   class="category">
+
+                    Category
+
+                </p>
+
+                <h2 id="productPrice">
+
+                    ₹0
+
+                </h2>
+
+                <p id="productStock"
+                   class="stock">
+
+                    In Stock
+
+                </p>
+
+                <hr>
+
+                <div class="quantity-container">
+
+                    <label>
+
+                        Quantity
+
+                    </label>
+
+                    <div class="quantity-box">
+
+                        <button id="decreaseBtn">
+
+                            -
+
+                        </button>
+
+                        <input type="number"
+                               id="quantity"
+                               value="1"
+                               min="1">
+
+                        <button id="increaseBtn">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="buttons">
+
+                    <button id="addCartBtn">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                        Add To Cart
+
+                    </button>
+
+                    <button id="buyNowBtn">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        Buy Now
+
+                    </button>
+
+                </div>
+
+                <button id="backBtn"
+                        class="back-btn">
+
+                    ← Back to Products
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+            ERROR
+    =========================== -->
+
+    <section id="errorSection"
+             class="error-section"
+             style="display:none;">
+
+        <h2>
+
+            Product Not Found
+
+        </h2>
+
+        <p>
+
+            The requested product does not exist.
+
+        </p>
+
+        <a href="products.html">
+
+            Back to Products
+
+        </a>
+
+    </section>
+
+    <!-- ==========================
+            TOAST
+    =========================== -->
+
+    <div id="toast"
+         class="toast">
+
+    </div>
+
+    <!-- ==========================
+            FOOTER
+    =========================== -->
+
+    <footer>
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <!-- API Config -->
+
+   
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+
+    <!-- Product Details JS -->
+
+    <script src="../assets/js/product_details.js"></script>
+
+</body>
+
+</html>

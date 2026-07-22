@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UrbanWear brings premium fashion and AI-powered shopping together in one modern experience.">
+    <title>UrbanWear | Premium Fashion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" aria-label="Primary navigation">
+        <a class="logo" href="index.html" aria-label="UrbanWear home">UrbanWear</a>
+
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-panel">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="ai_chat.html">AI Assistant</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <label class="search-box" for="siteSearch">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input id="siteSearch" type="search" placeholder="Search fashion" autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions" role="listbox"></div>
+                </label>
+
+                <a class="icon-link" href="wishlist.html" aria-label="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+                <a class="icon-link cart-link" href="cart.html" aria-label="View cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="nav-badge" id="cartCount">0</span>
+                </a>
+                <div class="profile-chip">
+                    <button class="profile-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                    <div class="profile-menu" role="menu">
+                        <a href="profile.html" role="menuitem">My Profile</a>
+                        <a href="orders.html" role="menuitem">My Orders</a>
+                        <a href="ai_chat.html" role="menuitem">AI Style Help</a>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content" tabindex="-1">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="eyebrow">AI-Powered Fashion</span>
+                <h1 id="hero-title">Style Meets Intelligence</h1>
+                <p>Discover your perfect outfit with curated fashion, real-time recommendations, and premium delivery.</p>
+                <div class="hero-actions">
+                    <a href="products.html" class="btn btn-primary">Shop Now</a>
+                    <a href="#collections" class="btn btn-secondary">Explore Collection</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="collections" aria-labelledby="categories-title">
+            <div class="section-title">
+                <span class="eyebrow">Curated Collections</span>
+                <h2 id="categories-title">Browse Your Next Favorite Style</h2>
+            </div>
+
+            <div class="category-grid">
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Men fashion" loading="lazy">
+                    <div class="category-body">
+                        <h3>Men</h3>
+                        <p>Elevated essentials</p>
+                        <a href="products.html" class="text-link">Explore</a>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80" alt="Women fashion" loading="lazy">
+                    <div class="category-body">
+                        <h3>Women</h3>
+                        <p>Chic statement pieces</p>
+                        <a href="products.html" class="text-link">Explore</a>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" alt="Shoes collection" loading="lazy">
+                    <div class="category-body">
+                        <h3>Shoes</h3>
+                        <p>Comfort meets style</p>
+                        <a href="products.html" class="text-link">Explore</a>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80" alt="Accessories collection" loading="lazy">
+                    <div class="category-body">
+                        <h3>Accessories</h3>
+                        <p>Finishing touches</p>
+                        <a href="products.html" class="text-link">Explore</a>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Sportswear collection" loading="lazy">
+                    <div class="category-body">
+                        <h3>Sports</h3>
+                        <p>Performance activewear</p>
+                        <a href="products.html" class="text-link">Explore</a>
+                    </div>
+                </article>
+                <article class="category-card">
+                    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="New arrivals" loading="lazy">
+                    <div class="category-body">
+                        <h3>New Arrivals</h3>
+                        <p>The latest drops</p>
+                        <a href="products.html" class="text-link">Explore</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="featured-products-title">
+            <div class="section-title">
+                <span class="eyebrow">Trending Now</span>
+                <h2 id="featured-products-title">Premium Picks for Your Wardrobe</h2>
+            </div>
+
+            <div class="product-toolbar">
+                <label class="toolbar-field" for="searchInput">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="searchInput" type="search" placeholder="Search products" autocomplete="off">
+                </label>
+                <label class="toolbar-field" for="sortSelect">
+                    <i class="fa-solid fa-arrow-down-short-wide"></i>
+                    <select id="sortSelect">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </label>
+                <label class="toolbar-field" for="filterSelect">
+                    <i class="fa-solid fa-filter"></i>
+                    <select id="filterSelect">
+                        <option value="all">All Categories</option>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                        <option value="Shoes">Shoes</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="featuredProducts" class="product-grid" aria-live="polite"></div>
+        </section>
+
+        <section class="section ai-banner" aria-labelledby="ai-banner-title">
+            <div class="ai-banner-content">
+                <div>
+                    <span class="eyebrow">Meet Your Style Coach</span>
+                    <h2 id="ai-banner-title">Need Help Choosing?</h2>
+                    <p>Let our AI shopping assistant guide you with personalized picks, outfit ideas, and tailored recommendations.</p>
+                    <div class="hero-actions">
+                        <a href="ai_chat.html" class="btn btn-primary">Chat with AI</a>
+                        <a href="products.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="ai-illustration" aria-hidden="true">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="reasons-title">
+            <div class="section-title">
+                <span class="eyebrow">Why UrbanWear</span>
+                <h2 id="reasons-title">Built for a Premium Shopping Experience</h2>
+            </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick dispatch and premium packaging.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Secure Payments</h3>
+                    <p>Protected checkout with trusted payment methods.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    <h3>Easy Returns</h3>
+                    <p>Hassle-free returns within a smooth window.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3>AI Recommendations</h3>
+                    <p>Style suggestions powered by your preferences.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fa-solid fa-crown"></i>
+                    <h3>Premium Quality</h3>
+                    <p>Curated fashion from trusted global brands.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fa-solid fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always available for your questions and orders.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="testimonials-title">
+            <div class="section-title">
+                <span class="eyebrow">Loved by Customers</span>
+                <h2 id="testimonials-title">What Our Customers Say</h2>
+            </div>
+            <div class="testimonial-slider" role="region" aria-label="Customer testimonials">
+                <article class="testimonial-card active">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80" alt="Customer portrait" loading="lazy">
+                    <h3>Mia Carter</h3>
+                    <p class="rating">★★★★★</p>
+                    <p>“The styling recommendations felt personal and incredibly accurate. I found my favorite outfit in minutes.”</p>
+                </article>
+                <article class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="Customer portrait" loading="lazy">
+                    <h3>Daniel Moore</h3>
+                    <p class="rating">★★★★★</p>
+                    <p>“Fast delivery, elegant packaging, and products that genuinely feel premium.”</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="brands-title">
+            <div class="section-title">
+                <span class="eyebrow">Trusted Brands</span>
+                <h2 id="brands-title">Partnered With Leading Fashion Labels</h2>
+            </div>
+            <div class="brand-row">
+                <span>Nike</span>
+                <span>Adidas</span>
+                <span>Puma</span>
+                <span>Reebok</span>
+                <span>New Balance</span>
+                <span>Converse</span>
+            </div>
+        </section>
+
+        <section class="newsletter" aria-labelledby="newsletter-title">
+            <h2 id="newsletter-title">Get Premium Fashion Updates</h2>
+            <p>Subscribe for early access to launches, exclusive offers, and AI styling tips.</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <label class="visually-hidden" for="newsletterEmail">Email address</label>
+                <input id="newsletterEmail" type="email" placeholder="Enter your email" required autocomplete="email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h2>UrbanWear</h2>
+            <p>Premium fashion designed for modern lifestyles.</p>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="products.html">Products</a>
+                <a href="#collections">Categories</a>
+                <a href="ai_chat.html">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            </div>
+            <p>© 2026 UrbanWear. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top" type="button" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/home.js"></script>
+</body>
+</html>

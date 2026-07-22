@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | UrbanWear</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <!-- CSS -->
+    
+    <link rel="stylesheet" href="../assets/css/login.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- Left Side -->
+        <div class="login-left">
+
+            <div class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 20L32 10L47 20V44L32 54L17 44V20Z" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+                    <path d="M24 24H40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 34H40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M24 44H33" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <h1>Welcome Back!</h1>
+
+            <p>
+                Login to your UrbanWear account and continue shopping.
+            </p>
+
+        </div>
+
+        <!-- Right Side -->
+        <div class="login-right">
+
+            <form id="loginForm" class="login-form">
+
+                <h2>Login</h2>
+
+                <div id="messageBox"></div>
+
+                <!-- Email -->
+
+                <div class="input-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+                <!-- Password -->
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required>
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="toggle-btn">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Remember -->
+
+                <div class="form-options">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe">
+
+                        Remember Me
+
+                    </label>
+
+                </div>
+
+                <!-- Login -->
+
+                <button
+                    type="submit"
+                    id="loginBtn"
+                    class="login-btn">
+
+                    Login
+
+                </button>
+
+                <!-- Loading -->
+
+                <div
+                    id="loading"
+                    class="loading">
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    Logging in...
+
+                </div>
+
+                <!-- Register -->
+
+                <p class="register-text">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+
+                        Register
+
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/login.js"></script>
+
+</body>
+
+</html>

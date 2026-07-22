@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | UrbanWear</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/profile.css">
+</head>
+
+<body>
+    <div id="loader" class="loader hidden"></div>
+    <div id="navbar"></div>
+
+    <main class="profile-page">
+        <section class="profile-hero" aria-labelledby="profile-heading">
+            <div class="profile-avatar-wrap">
+                <img id="profileImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Crect width='240' height='240' rx='120' fill='%23e2e8f0'/%3E%3Ccircle cx='120' cy='96' r='46' fill='%2394a3b8'/%3E%3Cpath d='M56 214c12-34 41-52 64-52s52 18 64 52' fill='%2394a3b8'/%3E%3C/svg%3E" alt="User profile image">
+                <div class="avatar-badge" aria-hidden="true">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+            </div>
+
+            <div class="profile-hero-info">
+                <div class="hero-actions">
+                    <span class="status-pill">
+                        <i class="fa-solid fa-crown"></i>
+                        Premium Member
+                    </span>
+                    <button id="logoutBtn" class="btn btn-danger" type="button">Logout</button>
+                </div>
+
+                <h1 id="customerName">Loading...</h1>
+                <p id="customerEmail"></p>
+            </div>
+        </section>
+
+        <section class="summary-grid" aria-label="Account summary">
+            <article class="summary-card">
+                <div class="summary-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div>
+                    <h3>0</h3>
+                    <p>Orders</p>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div>
+                    <h3>0</h3>
+                    <p>Wishlist</p>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div>
+                    <h3>0</h3>
+                    <p>Cart</p>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div>
+                    <h3>0</h3>
+                    <p>Reviews</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="profile-grid">
+            <article class="form-card">
+                <div class="card-header">
+                    <div>
+                        <h2><i class="fa-solid fa-user-circle"></i> Profile Information</h2>
+                        <p>Keep your personal information current.</p>
+                    </div>
+                </div>
+
+                <form id="profileForm">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="name"><i class="fa-solid fa-user"></i> Full Name</label>
+                            <input id="name" type="text" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+                            <input id="email" type="email" readonly>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="phone"><i class="fa-solid fa-phone"></i> Phone</label>
+                            <input id="phone" type="text">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="gender"><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                            <select id="gender">
+                                <option value="">Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </article>
+
+            <div class="side-stack">
+                <article class="form-card">
+                    <div class="card-header">
+                        <div>
+                            <h2><i class="fa-solid fa-location-dot"></i> Address Information</h2>
+                            <p>Manage your shipping details.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="city"><i class="fa-solid fa-city"></i> City</label>
+                            <input id="city" type="text">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="state"><i class="fa-solid fa-map"></i> State</label>
+                            <input id="state" type="text">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="country"><i class="fa-solid fa-globe"></i> Country</label>
+                            <input id="country" type="text">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pincode"><i class="fa-solid fa-envelope-open-text"></i> Pincode</label>
+                            <input id="pincode" type="text">
+                        </div>
+                    </div>
+                </article>
+
+                <article class="form-card">
+                    <div class="card-header">
+                        <div>
+                            <h2><i class="fa-solid fa-shield-halved"></i> Security</h2>
+                            <p>Update your password and profile photo.</p>
+                        </div>
+                    </div>
+
+                    <div class="upload-box">
+                        <label for="profileImageUpload" class="upload-button">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            Upload new photo
+                        </label>
+                        <input id="profileImageUpload" type="file" accept="image/*" hidden>
+                        <p>PNG, JPG, or WEBP up to 5MB.</p>
+                    </div>
+
+                    <div class="form-grid password-grid">
+                        <div class="input-group">
+                            <label for="currentPassword"><i class="fa-solid fa-lock"></i> Current Password</label>
+                            <input id="currentPassword" type="password" placeholder="Current Password">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="newPassword"><i class="fa-solid fa-key"></i> New Password</label>
+                            <input id="newPassword" type="password" placeholder="New Password">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="changePassword" class="btn btn-primary" type="button">Change Password</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <div id="footer"></div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/profile.js"></script>
+</body>
+</html>

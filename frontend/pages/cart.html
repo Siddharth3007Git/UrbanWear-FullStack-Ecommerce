@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UrbanWear | Shopping Cart</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    <link rel="stylesheet" href="../assets/css/cart.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="home.html">UrbanWear</a>
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="home.html">Home</a></li>
+
+            <li><a href="products.html">Products</a></li>
+
+            <li>
+
+                <a href="cart.html">
+
+                    Cart
+
+                    <span id="cartCount">0</span>
+
+                </a>
+
+            </li>
+
+            <li><a href="orders.html">Orders</a></li>
+
+            <li><a href="profile.html">Profile</a></li>
+
+        </ul>
+
+        <button id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </nav>
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <section class="page-title">
+
+        <h1>
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            Shopping Cart
+
+        </h1>
+
+    </section>
+
+    <!-- ================= LOADER ================= -->
+
+    <div id="loader" class="loader">
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        <p>Loading Cart...</p>
+
+    </div>
+
+    <!-- ================= CART ================= -->
+
+    <section id="cartSection" class="cart-section">
+
+        <div class="cart-container">
+
+            <!-- LEFT -->
+
+            <div class="cart-items">
+
+                <div id="cartItems">
+
+                    <!-- JS -->
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="cart-summary">
+
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+
+                    <span>Total Items</span>
+
+                    <span id="totalItems">
+
+                        0
+
+                    </span>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>Total Price</span>
+
+                    <span id="totalPrice">
+
+                        ₹0
+
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <button id="checkoutBtn">
+
+                    <i class="fa-solid fa-credit-card"></i>
+
+                    Proceed To Checkout
+
+                </button>
+
+                <button id="continueBtn">
+
+                    Continue Shopping
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= EMPTY CART ================= -->
+
+    <section id="emptyCart" class="empty-cart">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <h2>
+
+            Your Cart is Empty
+
+        </h2>
+
+        <p>
+
+            Start shopping to add products.
+
+        </p>
+
+        <a href="products.html">
+
+            Shop Now
+
+        </a>
+
+    </section>
+
+    <!-- ================= TOAST ================= -->
+
+    <div id="toast" class="toast"></div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+    
+
+    <script src="../assets/js/cart.js"></script>
+
+</body>
+
+</html>

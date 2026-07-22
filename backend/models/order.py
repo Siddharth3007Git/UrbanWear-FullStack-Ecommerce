@@ -1,10 +1,31 @@
-from sqlalchemy import Column,Integer,String
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime
+from sqlalchemy.sql import func
+
 from backend.database.connection import Base
 
+
 class Order(Base):
-    __tablename__="orders"
-    order_id = Column(Integer,primary_key=True,index=True)
-    customer_id = Column(Integer)
-    product_id = Column(Integer)
-    quantity = Column(Integer)
-    status = Column(String(50))
+    __tablename__ = "orders"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False
+    )
+
+    total_amount = Column(
+        Float,
+        nullable=False
+    )
+
+    status = Column(
+        String(50),
+        default="Pending"
+    )
+
+    created_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now()
+    )

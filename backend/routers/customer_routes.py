@@ -3,49 +3,91 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.database.connection import get_db
+from backend.auth.auth_bearer import get_current_user
+from backend.models.user import User
+
 from backend.services.customer_service import (
     get_customer_service,
+    get_my_profile_service,
     create_customer_service,
-    update_customer_service,
-    delete_customer_service
+    update_my_profile_service,
+    delete_my_profile_service
 )
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/customers",
+    tags=["Customers"]
+)
+
 
 class CustomerSchema(BaseModel):
-    name:str
-    email:str
-    password:str   # changed int to str (password should be string)
+    phone: str
+    gender: str
+    city: str
+    state: str
+    country: str
+    pincode: str
 
-@router.get("/customers")
-def get_customer(db: Session = Depends(get_db)):
+
+# Get Logged-in Profile
+@router.get("/me")
+def get_my_profile(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+
+    return get_my_profile_service(
+        current_user.id,
+        db
+    )
+
+
+# Get All Customers
+@router.get("/")
+def get_customers(
+    db: Session = Depends(get_db)
+):
     return get_customer_service(db)
 
-@router.post("/customers")
-def create_customer(customer: CustomerSchema, db: Session = Depends(get_db)):
 
-    new_customer = create_customer_service(customer, db)
+# Create Profile
+@router.post("/")
+def create_customer(
+    customer: CustomerSchema,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
 
-    return {
-        "message":"customer Added Successfully",
-        "data":new_customer
-    }
+    return create_customer_service(
+        customer,
+        current_user.id,
+        db
+    )
 
-@router.put("/update_customer/{id}")
-def update_customer(id:int, obj:CustomerSchema, db: Session = Depends(get_db)):
 
-    customer = update_customer_service(id, obj, db)
+# Update Logged-in Profile
+@router.put("/me")
+def update_my_profile(
+    customer: CustomerSchema,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
 
-    return {
-        "message":"Customer Updated Successfully",
-        "data":customer
-    }
+    return update_my_profile_service(
+        customer,
+        current_user.id,
+        db
+    )
 
-@router.delete("/delete_customer/{id}")
-def delete_customer(id:int, db: Session = Depends(get_db)):
 
-    delete_customer_service(id, db)
+# Delete Logged-in Profile
+@router.delete("/me")
+def delete_my_profile(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
 
-    return {
-        "message":"Deleted Successfully"
-    }
+    return delete_my_profile_service(
+        current_user.id,
+        db
+    )

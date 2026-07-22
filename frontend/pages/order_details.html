@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Details | UrbanWear</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    <link rel="stylesheet"
+          href="../assets/css/order_details.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ===========================
+        LOADER
+=========================== -->
+
+<div class="loader"
+     id="loader">
+
+    <div class="spinner"></div>
+
+</div>
+
+<!-- ===========================
+        NAVBAR
+=========================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <a href="home.html">
+
+            Urban<span>Wear</span>
+
+        </a>
+
+    </div>
+
+    <ul>
+
+        <li>
+
+            <a href="home.html">
+
+                Home
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="products.html">
+
+                Products
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="cart.html">
+
+                Cart
+
+                <span id="cartCount">0</span>
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="orders.html"
+               class="active">
+
+                Orders
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="profile.html">
+
+                Profile
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <button
+        id="logoutBtn"
+        class="logout-btn">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+
+    </button>
+
+</nav>
+
+<!-- ===========================
+        PAGE HEADER
+=========================== -->
+
+<section class="page-header">
+
+    <h1>
+
+        <i class="fa-solid fa-box-open"></i>
+
+        Order Details
+
+    </h1>
+
+    <p>
+
+        View complete information about your order.
+
+    </p>
+
+</section>
+
+<!-- ===========================
+        ORDER CONTAINER
+=========================== -->
+
+<section
+    id="orderContainer"
+    class="order-container">
+    <div class="order-card">
+
+        <!-- ===========================
+                ORDER HEADER
+        =========================== -->
+
+        <div class="order-top">
+
+            <div>
+
+                <h2 id="orderId">
+
+                    Order #0000
+
+                </h2>
+
+                <p id="orderDate">
+
+                    Order Date
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <span
+                    id="orderStatus"
+                    class="order-status">
+
+                    Pending
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- ===========================
+                PRODUCT DETAILS
+        =========================== -->
+
+        <div class="product-section">
+
+            <div class="product-image">
+
+                <img
+                    id="productImage"
+                    src="../assets/images/no-image.png"
+                    alt="Product">
+
+            </div>
+
+            <div class="product-info">
+
+                <h2 id="productName">
+
+                    Product Name
+
+                </h2>
+
+                <p>
+
+                    Category :
+
+                    <strong id="productCategory">
+
+                        --
+
+                    </strong>
+
+                </p>
+
+                <p>
+
+                    Quantity :
+
+                    <strong id="productQuantity">
+
+                        1
+
+                    </strong>
+
+                </p>
+
+                <p>
+
+                    Price :
+
+                    <strong id="productPrice">
+
+                        ₹0
+
+                    </strong>
+
+                </p>
+
+                <p>
+
+                    Total :
+
+                    <strong id="productTotal">
+
+                        ₹0
+
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ===========================
+                SHIPPING DETAILS
+        =========================== -->
+
+        <div class="details-grid">
+
+            <div class="detail-box">
+
+                <h3>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Shipping Address
+
+                </h3>
+
+                <p id="shippingAddress">
+
+                    Not Available
+
+                </p>
+
+            </div>
+
+            <div class="detail-box">
+
+                <h3>
+
+                    <i class="fa-solid fa-credit-card"></i>
+
+                    Payment Details
+
+                </h3>
+
+                <p>
+
+                    Method :
+
+                    <strong id="paymentMethod">
+
+                        --
+
+                    </strong>
+
+                </p>
+
+                <p>
+
+                    Status :
+
+                    <span
+                        id="paymentStatus"
+                        class="payment-status">
+
+                        Pending
+
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ===========================
+                ORDER SUMMARY
+        =========================== -->
+
+        <div class="summary-section">
+
+            <h3>
+
+                <i class="fa-solid fa-receipt"></i>
+
+                Order Summary
+
+            </h3>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <strong id="subtotal">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Shipping</span>
+
+                <strong id="shippingCharge">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Tax</span>
+
+                <strong id="taxAmount">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+            <div class="summary-row total-row">
+
+                <span>Total Amount</span>
+
+                <strong id="grandTotal">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- ===========================
+                DELIVERY INFORMATION
+        =========================== -->
+
+        <div class="details-grid">
+
+            <div class="detail-box">
+
+                <h3>
+
+                    <i class="fa-solid fa-truck"></i>
+
+                    Delivery Information
+
+                </h3>
+
+                <p>
+
+                    Expected Delivery :
+
+                </p>
+
+                <strong id="deliveryDate">
+
+                    Not Available
+
+                </strong>
+
+            </div>
+
+            <div class="detail-box">
+
+                <h3>
+
+                    <i class="fa-solid fa-barcode"></i>
+
+                    Tracking ID
+
+                </h3>
+
+                <strong id="trackingId">
+
+                    Not Available
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- ===========================
+                ACTION BUTTONS
+        =========================== -->
+
+        <div class="action-buttons">
+
+            <button
+                id="backBtn"
+                class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Orders
+
+            </button>
+
+            <button
+                id="cancelBtn"
+                class="cancel-btn">
+
+                <i class="fa-solid fa-ban"></i>
+
+                Cancel Order
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+        TOAST
+=========================== -->
+
+<div
+    id="toast"
+    class="toast">
+
+</div>
+
+<!-- ===========================
+        FOOTER
+=========================== -->
+
+<footer>
+
+    <p>
+
+        © 2026 UrbanWear. All Rights Reserved.
+
+    </p>
+
+</footer>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/utils.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/navbar.js"></script>
+
+
+
+
+<script src="../assets/js/order_details.js"></script>
+
+</body>
+
+</html>

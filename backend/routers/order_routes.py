@@ -1,58 +1,175 @@
-from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    BackgroundTasks
+)
+
 from sqlalchemy.orm import Session
 
 from backend.database.connection import get_db
-from backend.services.auth_service import get_current_customer   # NEW
+from backend.auth.auth_bearer import get_current_user
+
 from backend.services.order_service import (
-    get_order_service,
-    create_order_service,
-    update_order_service,
-    delete_order_service
+    place_order_service,
+    get_my_orders_service,
+    get_order_by_id_service,
+    cancel_order_service,
 )
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/orders",
+    tags=["Orders"]
+)
 
-class OrderSchema(BaseModel):
-    customer_id:int
-    product_id:int
-    quantity:int
-    status:str
+# ======================================================
+# Place Order
+# ======================================================
+
+@router.post("/")
+def place_order(
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user)
+):
+
+    try:
+
+        return place_order_service(
+
+            db=db,
+
+            user_id=current_user.id,
+
+            background_tasks=background_tasks
+
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+
+            status_code=400,
+
+            detail=str(e)
+
+        )
 
 
-@router.get("/orders")
-def get_order(db: Session = Depends(get_db)):
+# ======================================================
+# Get My Orders
+# ======================================================
 
-    return get_order_service(db)
+@router.get("/")
+def get_my_orders(
+
+    db: Session = Depends(get_db),
+
+    current_user=Depends(get_current_user)
+
+):
+
+    try:
+
+        return get_my_orders_service(
+
+            db=db,
+
+            user_id=current_user.id
+
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+
+            status_code=404,
+
+            detail=str(e)
+
+        )
+    
+# ======================================================
+# Get Order By ID
+# ======================================================
+
+@router.get("/{order_id}")
+def get_order_by_id(
+
+    order_id: int,
+
+    db: Session = Depends(get_db),
+
+    current_user=Depends(get_current_user)
+
+):
+
+    try:
+
+        return get_order_by_id_service(
+
+            db=db,
+
+            user_id=current_user.id,
+
+            order_id=order_id
+
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+
+            status_code=404,
+
+            detail=str(e)
+
+        )
 
 
-@router.post("/orders")
-def create_order(order: OrderSchema, db: Session = Depends(get_db), current_customer = Depends(get_current_customer)):   # NEW - login required
+# ======================================================
+# Cancel Order
+# ======================================================
 
-    new_order = create_order_service(order, db)
+@router.put("/{order_id}/cancel")
+def cancel_order(
 
-    return {
-        "message":"Order Confirmed",
-        "data":new_order
-    }
+    order_id: int,
 
+    db: Session = Depends(get_db),
 
-@router.put("/update_order/{id}")
-def update_order(id:int, obj:OrderSchema, db: Session = Depends(get_db), current_customer = Depends(get_current_customer)):   # NEW - login required
+    current_user=Depends(get_current_user)
 
-    order = update_order_service(id, obj, db)
+):
 
-    return {
-        "message":"Order Updated",
-        "data":order
-    }
+    try:
 
+        return cancel_order_service(
 
-@router.delete("/delete_order/{id}")
-def delete_order(id:int, db: Session = Depends(get_db), current_customer = Depends(get_current_customer)):   # NEW - login required
+            db=db,
 
-    delete_order_service(id, db)
+            user_id=current_user.id,
 
-    return {
-        "message":"Order Deleted Successfully"
-    }
+            order_id=order_id
+
+        )
+
+    except ValueError as e:
+
+        raise HTTPException(
+
+            status_code=400,
+
+            detail=str(e)
+
+        )
+
+    except Exception as e:
+
+        raise HTTPException(
+
+            status_code=500,
+
+            detail=str(e)
+
+        )

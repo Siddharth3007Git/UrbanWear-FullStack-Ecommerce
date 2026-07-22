@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanWear | AI Fashion Store</title>
+    <meta name="description" content="UrbanWear - Modern AI Powered Fashion Ecommerce Platform">
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
+    <link rel="stylesheet" href="assets/css/global.css">
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #4f46e5, #2563eb);
+            color: #fff;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .page-shell {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-box {
+            width: min(100%, 420px);
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .logo {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin: 0 0 1.25rem;
+            line-height: 1.2;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            margin: 1.25rem auto;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        p {
+            margin: 0;
+            color: #fff;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-shell" role="main">
+        <section class="loading-box" aria-labelledby="loading-title" aria-describedby="loading-message" aria-busy="true">
+            <h1 class="logo" id="loading-title">UrbanWear</h1>
+            <div class="loader" aria-hidden="true"></div>
+            <p id="loading-message" role="status" aria-live="polite">Loading your experience...</p>
+        </section>
+    </main>
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const token = getToken();
+            const user = getCurrentUser();
+
+            if (!token) {
+                window.location.href = "pages/home.html";
+                return;
+            }
+
+            if (user && user.role === "admin") {
+                window.location.href = "pages/admin/dashboard.html";
+            } else {
+                window.location.href = "pages/home.html";
+            }
+        });
+    </script>
+</body>
+</html>

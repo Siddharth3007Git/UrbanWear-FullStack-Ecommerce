@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanWear Admin | Customers</title>
+
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../assets/css/customers.css">
+
+    <style>
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .search-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .search-box input {
+            flex: 1 1 260px;
+            min-width: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .navbar ul {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==========================
+            NAVBAR
+    =========================== -->
+    <nav class="navbar" aria-label="Admin primary navigation">
+        <div class="logo">
+            <a href="dashboard.html" aria-label="Go to dashboard">
+                Urban<span>Wear</span>
+            </a>
+        </div>
+
+        <ul>
+            <li>
+                <a href="dashboard.html">Dashboard</a>
+            </li>
+            <li>
+                <a href="products.html">Products</a>
+            </li>
+            <li>
+                <a href="orders.html">Orders</a>
+            </li>
+            <li>
+                <a href="customers.html" class="active" aria-current="page">Customers</a>
+            </li>
+            <li>
+                <a href="transactions.html">Transactions</a>
+            </li>
+        </ul>
+
+        <button class="logout-btn" id="logoutBtn" type="button" aria-label="Logout">
+            <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+            <span>Logout</span>
+        </button>
+    </nav>
+
+    <!-- ==========================
+            MAIN CONTAINER
+    =========================== -->
+    <main class="container" id="main-content" tabindex="-1">
+        <!-- Header -->
+        <header class="page-header">
+            <div>
+                <h1>
+                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                    Customers
+                </h1>
+                <p>Manage all registered customers.</p>
+            </div>
+        </header>
+
+        <!-- Search -->
+        <section class="search-box" aria-label="Customer search">
+            <label class="visually-hidden" for="searchInput">Search customers</label>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search customer by name or email..."
+                autocomplete="off"
+                aria-describedby="searchHelp"
+            >
+
+            <button id="searchBtn" type="button" aria-label="Search customers">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <span>Search</span>
+            </button>
+        </section>
+        <p id="searchHelp" class="visually-hidden">Search by customer name or email.</p>
+
+        <!-- Statistics -->
+        <section class="stats" aria-label="Customer statistics">
+            <div class="stat-card">
+                <h2 id="totalCustomers">0</h2>
+                <p>Total Customers</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="activeCustomers">0</h2>
+                <p>Active Customers</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="blockedCustomers">0</h2>
+                <p>Blocked Customers</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="newCustomers">0</h2>
+                <p>New This Month</p>
+            </div>
+        </section>
+
+        <!-- Customers Table -->
+        <section class="table-container" role="region" aria-labelledby="customersTableCaption">
+            <table aria-describedby="customersTableHint">
+                <caption id="customersTableCaption" class="visually-hidden">Registered customers</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Orders</th>
+                        <th scope="col">Total Spent</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customersTable">
+                    <!-- customers.js will load rows here -->
+                </tbody>
+            </table>
+        </section>
+        <p id="customersTableHint" class="visually-hidden">Use the search box to filter the customer list.</p>
+
+        <!-- ==========================
+                EMPTY STATE
+        =========================== -->
+        <section class="empty" id="emptyState" style="display: none;" aria-live="polite">
+            <i class="fa-solid fa-users-slash" aria-hidden="true"></i>
+            <h2>No Customers Found</h2>
+            <p>There are no customers matching your search.</p>
+        </section>
+
+        <!-- ==========================
+                LOADER
+        =========================== -->
+        <div class="loader" id="loader" style="display: none;" role="status" aria-live="polite" aria-label="Loading customers">
+            <div class="spinner" aria-hidden="true"></div>
+        </div>
+
+        <!-- ==========================
+                PAGINATION
+        =========================== -->
+        <nav class="pagination" aria-label="Customer pagination">
+            <button id="prevPage" type="button">
+                <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+                <span>Previous</span>
+            </button>
+            <span id="pageInfo">Page 1 of 1</span>
+            <button id="nextPage" type="button">
+                <span>Next</span>
+                <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+            </button>
+        </nav>
+    </main>
+
+    <!-- ==========================
+            TOAST MESSAGE
+    =========================== -->
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ==========================
+            FOOTER
+    =========================== -->
+    <footer>
+        <p>© 2026 UrbanWear Admin Panel. All Rights Reserved.</p>
+    </footer>
+
+    <!-- ==========================
+            JAVASCRIPT
+    =========================== -->
+    <!-- API Configuration -->
+    <script src="../../assets/js/config.js"></script>
+
+    <!-- Utility Functions -->
+    <script src="../../assets/js/utils.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+    <!-- Customers Script -->
+    <script src="../../assets/js/customers.js"></script>
+</body>
+</html>

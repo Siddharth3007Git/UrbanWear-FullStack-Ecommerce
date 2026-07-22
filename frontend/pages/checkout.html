@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | UrbanWear</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    <link rel="stylesheet" href="../assets/css/checkout.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <a href="home.html">
+                Urban<span>Wear</span>
+            </a>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="home.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="products.html">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a href="cart.html">
+                        Cart
+                        <span id="cartCount">0</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="orders.html">
+                        Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        Profile
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </header>
+
+    <!-- ================= LOADER ================= -->
+
+    <div id="loader" class="loader">
+
+        <div class="spinner"></div>
+
+    </div>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="checkout-container">
+
+        <!-- LEFT -->
+
+        <section class="checkout-form">
+
+            <h2>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Shipping Details
+
+            </h2>
+
+            <form id="checkoutForm">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="9876543210"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Address</label>
+
+                    <textarea
+                        id="address"
+                        rows="4"
+                        placeholder="Street, Area..."
+                        required></textarea>
+
+                </div>
+
+                <div class="two-column">
+
+                    <div class="form-group">
+
+                        <label>City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>State</label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <div class="two-column">
+
+                    <div class="form-group">
+
+                        <label>Pincode</label>
+
+                        <input
+                            type="number"
+                            id="pincode"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Country</label>
+
+                        <input
+                            type="text"
+                            id="country"
+                            value="India"
+                            required>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- RIGHT -->
+
+        <aside class="order-summary">
+
+            <h2>
+
+                <i class="fa-solid fa-bag-shopping"></i>
+
+                Order Summary
+
+            </h2>
+
+            <div id="checkoutItems">
+
+                <!-- JS -->
+
+            </div>
+
+            <hr>
+
+            <div class="summary-row">
+
+                <span>Items</span>
+
+                <span id="totalItems">0</span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="subtotal">₹0</span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Shipping</span>
+
+                <span id="shipping">FREE</span>
+
+            </div>
+
+            <div class="summary-row total">
+
+                <span>Total</span>
+
+                <span id="grandTotal">₹0</span>
+
+            </div>
+
+            <div class="payment-section">
+
+                <h3>
+
+                    Payment Method
+
+                </h3>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="cod"
+                        checked>
+
+                    Cash On Delivery
+
+                </label>
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="online">
+
+                    Online Payment
+
+                </label>
+
+            </div>
+
+            <button id="placeOrderBtn" class="checkout-btn">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Place Order
+
+            </button>
+
+        </aside>
+
+    </main>
+
+    <!-- ================= TOAST ================= -->
+
+    <div id="toast" class="toast"></div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+
+    
+
+    <script src="../assets/js/checkout.js"></script>
+
+<div class="secure-checkout">
+    <i class="fa-solid fa-shield-halved"></i>
+    <span>100% Secure Checkout</span>
+</div>
+
+<div class="payment-icons">
+    <i class="fa-brands fa-cc-visa"></i>
+    <i class="fa-brands fa-cc-mastercard"></i>
+    <i class="fa-brands fa-google-pay"></i>
+    <i class="fa-brands fa-paypal"></i>
+</div>
+
+</body>
+</html>

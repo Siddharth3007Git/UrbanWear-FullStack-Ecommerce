@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>UrbanWear | Products</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="../assets/css/products.css">
+
+    <!-- API Config -->
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <!-- ==========================
+            LOADER
+    =========================== -->
+
+    <div class="loader"
+         id="loader">
+
+        <div class="spinner"></div>
+
+    </div>
+
+    <!-- ==========================
+            NAVBAR
+    =========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="home.html">
+
+                Urban<span>Wear</span>
+
+            </a>
+
+        </div>
+
+        <ul>
+
+            <li>
+
+                <a href="home.html">
+
+                    Home
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="products.html"
+                   class="active">
+
+                    Products
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="cart.html">
+
+                    Cart
+
+                    <span id="cartCount">
+
+                        0
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="orders.html">
+
+                    Orders
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <button
+            class="logout-btn"
+            id="logoutBtn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </nav>
+
+    <!-- ==========================
+            PAGE HEADER
+    =========================== -->
+
+    <header class="page-header">
+
+        <h1>
+
+            <i class="fa-solid fa-shirt"></i>
+
+            UrbanWear Collection
+
+        </h1>
+
+        <p>
+
+            Discover premium fashion products with the best quality.
+
+        </p>
+
+    </header>
+
+    <!-- ==========================
+            FILTER SECTION
+    =========================== -->
+
+    <section class="filters">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products...">
+
+        </div>
+
+        <select id="categoryFilter">
+
+            <option value="">
+
+                All Categories
+
+            </option>
+
+        </select>
+
+        <input
+            type="number"
+            id="minPrice"
+            placeholder="Min Price">
+
+        <input
+            type="number"
+            id="maxPrice"
+            placeholder="Max Price">
+
+        <button id="filterBtn">
+
+            <i class="fa-solid fa-filter"></i>
+
+            Apply Filters
+
+        </button>
+
+    </section>
+    <!-- ==========================
+            PRODUCTS SECTION
+    =========================== -->
+
+    <main>
+
+        <section
+            class="products-section">
+
+            <div
+                class="products-grid"
+                id="productsContainer">
+
+                <!-- Products will be loaded
+                     dynamically by products.js -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ==========================
+            NO PRODUCTS FOUND
+    =========================== -->
+
+    <section
+        class="empty-products"
+        id="emptyProducts"
+        style="display: none;">
+
+        <i class="fa-solid fa-box-open"></i>
+
+        <h2>
+
+            No Products Found
+
+        </h2>
+
+        <p>
+
+            We couldn't find any products matching
+            your search or filter criteria.
+
+        </p>
+
+        <button
+            id="resetFilters">
+
+            <i class="fa-solid fa-rotate"></i>
+
+            Reset Filters
+
+        </button>
+
+    </section>
+
+    <!-- ==========================
+            PAGINATION
+    =========================== -->
+
+    <section
+        class="pagination">
+
+        <button
+            id="prevPage">
+
+            <i class="fa-solid fa-angle-left"></i>
+
+            Previous
+
+        </button>
+
+        <span
+            id="pageInfo">
+
+            Page 1
+
+        </span>
+
+        <button
+            id="nextPage">
+
+            Next
+
+            <i class="fa-solid fa-angle-right"></i>
+
+        </button>
+
+    </section>
+
+    <!-- ==========================
+            TOAST MESSAGE
+    =========================== -->
+
+    <div
+        class="toast"
+        id="toast">
+
+    </div>
+
+    <!-- ==========================
+            FOOTER
+    =========================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>
+
+                UrbanWear
+
+            </h3>
+
+            <p>
+
+                Premium Fashion • Quality Products •
+                Secure Shopping Experience
+
+            </p>
+
+            <div class="footer-links">
+
+                <a href="home.html">
+
+                    Home
+
+                </a>
+
+                <a href="products.html">
+
+                    Products
+
+                </a>
+
+                <a href="cart.html">
+
+                    Cart
+
+                </a>
+
+                <a href="orders.html">
+
+                    Orders
+
+                </a>
+
+            </div>
+
+            <p class="copyright">
+
+                © 2026 UrbanWear. All Rights Reserved.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- ==========================
+            JAVASCRIPT
+    =========================== -->
+
+    <script src="../assets/js/products.js"></script>
+
+</body>
+
+</html>

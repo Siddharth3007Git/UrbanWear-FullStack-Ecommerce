@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders | UrbanWear</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    <link rel="stylesheet"
+          href="../assets/css/orders.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <a href="home.html">
+
+                Urban<span>Wear</span>
+
+            </a>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="home.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="products.html">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a href="cart.html">
+                        Cart
+                        <span id="cartCount">0</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="active"
+                       href="orders.html">
+                        Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        Profile
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </header>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <section class="page-header">
+
+        <h1>
+
+            <i class="fa-solid fa-box-open"></i>
+
+            My Orders
+
+        </h1>
+
+        <p>
+
+            Track, view and manage all your orders.
+
+        </p>
+
+    </section>
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="search-section">
+
+        <input
+            type="text"
+            id="searchOrder"
+            placeholder="Search by Order ID...">
+
+        <button id="searchBtn">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </button>
+
+    </section>
+
+    <!-- ================= LOADER ================= -->
+
+    <div
+        id="loader"
+        class="loader">
+
+        <div class="spinner"></div>
+
+    </div>
+
+    <!-- ================= EMPTY ================= -->
+
+    <section
+        id="emptyOrders"
+        class="empty-orders"
+        style="display:none;">
+
+        <i class="fa-solid fa-box-open"></i>
+
+        <h2>
+
+            No Orders Found
+
+        </h2>
+
+        <p>
+
+            Looks like you haven't placed any orders yet.
+
+        </p>
+
+        <a
+            href="products.html"
+            class="shop-btn">
+
+            Continue Shopping
+
+        </a>
+
+    </section>
+
+    <!-- ================= ORDERS ================= -->
+
+    <main
+        id="ordersContainer"
+        class="orders-container">
+
+        <!-- JavaScript will load orders here -->
+
+    </main>
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        id="toast"
+        class="toast">
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+
+  
+
+    <script src="../assets/js/orders.js"></script>
+
+</body>
+
+</html>

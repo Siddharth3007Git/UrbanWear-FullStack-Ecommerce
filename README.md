@@ -1,150 +1,178 @@
-# WearVerse 👕
+# 👕 UrbanWear -- AI Powered Full Stack Fashion E-Commerce Platform
 
-A full-stack AI-powered clothing ecommerce platform — built as a portfolio project to demonstrate end-to-end full-stack development combined with practical AI/LLM integration.
-
-## Overview
-
-WearVerse is a complete clothing ecommerce web application featuring user authentication, product browsing with filters, a shopping cart and checkout flow, and an intelligent shopping assistant chatbot. The chatbot combines three distinct AI capabilities — natural language product search, an AI agent that can manage orders, and a RAG-based policy assistant — all accessible through a single chat widget on every page.
-
-This project was built iteratively, phase by phase, starting with a hardened FastAPI backend and a complete frontend, then layering in AI features one at a time.
-
-## Features
-
-**Core Ecommerce**
-- User registration and login with JWT authentication
-- Passwords hashed with bcrypt
-- Product browsing with category, price, and name filtering
-- Pagination on product listings
-- Shopping cart (add, update quantity, remove)
-- Checkout flow with order placement
-- Order status tracking
-
-**AI Shopping Assistant**
-- **Product Search (Query Generator):** Ask in plain English — e.g. "show me jeans under ₹500" — and get matching products, powered by Groq's LLaMA 3.3 model
-- **Order Management Agent:** An AI agent (built with LangChain) that can place, cancel, modify, and check the status of orders by reasoning about which backend tool to call
-- **Policy Assistant (RAG):** Ask questions about returns, shipping, and privacy policy; answers are retrieved from a policy document using ChromaDB vector search and answered by an LLM
-
-**Frontend**
-- Clean, minimal H&M-inspired UI built with plain HTML/CSS/JavaScript
-- Seven pages: login, register, home, products, product details, cart, checkout
-- Floating chatbot widget present on every page
-
-## Tech Stack
-
-**Backend**
-- FastAPI
-- MySQL with SQLAlchemy
-- JWT authentication (python-jose) + bcrypt password hashing
-- Pydantic for request validation
-
-**Frontend**
-- HTML, CSS, vanilla JavaScript (no framework)
-
-**AI / LLM**
-- Groq API (LLaMA 3.3 70B)
-- LangChain & LangGraph (AI agent with tool calling)
-- ChromaDB (vector database for RAG)
-- PyPDF2 (PDF text extraction)
-
-**Dev Environment**
-- Conda, VS Code, Jupyter notebooks (for iterative AI development)
-
-## Project Structure
-
+```{=html}
+<p align="center">
 ```
-Clothes_Ecommerce/
+`<img src="docs/screenshots/banner.png" alt="UrbanWear Banner" width="100%">`{=html}
+```{=html}
+</p>
+```
+```{=html}
+<p align="center">
+```
+`<img src="https://img.shields.io/badge/Python-3.12-blue?logo=python">`{=html}
+`<img src="https://img.shields.io/badge/FastAPI-Latest-green?logo=fastapi">`{=html}
+`<img src="https://img.shields.io/badge/MySQL-8-blue?logo=mysql">`{=html}
+`<img src="https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker">`{=html}
+`<img src="https://img.shields.io/badge/Nginx-Reverse_Proxy-009639?logo=nginx">`{=html}
+`<img src="https://img.shields.io/badge/Gemini-AI-4285F4">`{=html}
+`<img src="https://img.shields.io/badge/Razorpay-Integrated-0C2451">`{=html}
+`<img src="https://img.shields.io/badge/License-MIT-yellow">`{=html}
+```{=html}
+</p>
+```
+## 🌟 Overview
+
+UrbanWear is an AI-powered full-stack fashion e-commerce platform built
+with **FastAPI**, **MySQL**, **Docker**, **Nginx**, **JWT
+Authentication**, **Google Gemini AI**, and **Razorpay**. It
+demonstrates production-inspired backend architecture, secure
+authentication, REST APIs, AI integration, and containerized deployment.
+
+## ✨ Features
+
+-   🔐 JWT Authentication
+-   👕 Product Management
+-   🛒 Shopping Cart
+-   💳 Razorpay Payments
+-   📦 Order Management
+-   🤖 Gemini AI Shopping Assistant
+-   👤 User Profiles
+-   📧 Email Notifications
+-   👨‍💼 Admin Dashboard
+-   🐳 Docker Deployment
+-   📚 Swagger & ReDoc API Docs
+
+## 🛠 Tech Stack
+
+  Layer      Technologies
+  ---------- -------------------------------
+  Backend    FastAPI, Python, SQLAlchemy
+  Frontend   HTML, CSS, JavaScript
+  Database   MySQL
+  AI         Gemini AI
+  Payments   Razorpay
+  DevOps     Docker, Docker Compose, Nginx
+
+## 📂 Project Structure
+
+``` text
+UrbanWear/
 ├── backend/
-│   ├── main.py
-│   ├── database/
-│   ├── models/
-│   ├── routers/
-│   │   ├── product_routes.py
-│   │   ├── customer_routes.py
-│   │   ├── order_routes.py
-│   │   ├── cart_routes.py
-│   │   ├── auth_routes.py
-│   │   └── chat_routes.py
-│   └── services/
 ├── frontend/
-│   ├── templates/        (login, register, home, products,
-│   │                       product_details, cart, checkout)
-│   └── static/
-│       ├── css/
-│       ├── js/
-│       └── images/
-├── chatbot/
-│   ├── query_generator.py    (Phase 5 — product search)
-│   ├── agent.py               (Phase 6 — AI order agent)
-│   ├── tools.py                (Phase 6 — agent tools)
-│   └── rag/
-│       ├── basic.py            (RAG — policy assistant)
-│       ├── model.py
-│       ├── load_documents.py
-│       ├── generator.py
-│       └── policy.pdf
-├── screenshots/
-├── requirements.txt
+├── docs/
+├── sql/
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
 └── README.md
 ```
 
-## Setup Instructions
+## 🏗 Architecture
 
-**1. Clone the repository**
-```bash
-git clone <your-repo-url>
-cd Clothes_Ecommerce
+``` mermaid
+flowchart LR
+User --> Browser --> Nginx --> FastAPI --> MySQL
+FastAPI --> GeminiAI
+FastAPI --> Razorpay
+FastAPI --> SMTP
 ```
 
-**2. Install dependencies**
-```bash
-pip install -r requirements.txt
+## 📚 API Documentation
+
+  Docs      URL
+  --------- -----------------------------
+  Swagger   http://localhost:8000/docs
+  ReDoc     http://localhost:8000/redoc
+
+### Main APIs
+
+-   Authentication
+-   Products
+-   Cart
+-   Orders
+-   Payments
+-   Profile
+-   Admin
+-   AI Assistant
+
+## 🐳 Docker
+
+``` bash
+docker compose up --build
 ```
 
-**3. Set up MySQL database**
-```sql
-CREATE DATABASE clothes_ecommerce;
-```
-Run the table creation scripts for `customers`, `products`, `orders`, `cart`, `transactions`.
+## ⚙ Installation
 
-**4. Configure environment variables**
-
-Create a `.env` file in the project root:
-```
-GROQ_API_KEY=your_groq_api_key
-USER_TOKEN=your_jwt_token (for AI agent testing)
-```
-
-**5. Start the backend**
-```bash
+``` bash
+git clone https://github.com/Siddharth3007Git/UrbanWear.git
+cd UrbanWear
+python -m venv venv
+pip install -r backend/requirements.txt
 uvicorn backend.main:app --reload
 ```
 
-**6. Open the frontend**
+## 🌍 Environment Variables
 
-Open `frontend/templates/login.html` with a tool like VS Code Live Server.
+``` env
+DB_HOST=mysql
+DB_PORT=3306
+DB_NAME=clothes_ecommerce
+DB_USER=root
+DB_PASSWORD=root
 
-**7. Explore the API**
+SECRET_KEY=your_secret_key
+GEMINI_API_KEY=your_api_key
+RAZORPAY_KEY_ID=your_key
+RAZORPAY_KEY_SECRET=your_secret
+```
 
-Visit `http://127.0.0.1:8000/docs` for the interactive Swagger UI.
+## 📸 Screenshots
 
-## Screenshots
+Replace these placeholders with project screenshots.
 
+-   Home
+-   Products
+-   Cart
+-   Checkout
+-   Admin Dashboard
+-   Swagger UI
 
-![Home Page](screenshots/home.png)
-![Products Page](screenshots/products.png)
-![Cart Page](screenshots/cart.png)
-![Checkout Page](screenshots/checkout.png)
+## 🚀 Future Roadmap
 
-## Known Limitations / Future Improvements
+-   CI/CD
+-   Kubernetes
+-   Analytics
+-   Wishlist
+-   Reviews
+-   Mobile App
+-   PWA
 
-- Not yet deployed to a live server (currently runs locally)
-- No payment gateway integration (checkout uses Cash on Delivery / placeholder online payment)
-- Products currently support a single image; multi-color variants and multi-angle product photos (like major retail sites) are planned
-- AI agent occasionally requires precise phrasing for tool calls; ongoing refinement of prompts and tool descriptions
-- Free-tier LLM API rate limits constrain heavy testing sessions
+## 🤝 Contributing
 
-## Author
+1.  Fork
+2.  Create a branch
+3.  Commit
+4.  Push
+5.  Open a Pull Request
 
-Built by Hitesh Sonawane as a portfolio project to demonstrate full-stack development and practical AI/LLM integration skills.
+## 📄 License
 
-🔗 [LinkedIn](https://www.linkedin.com/in/hitesh-sonawane-014802376)
+MIT License
+
+## 👨‍💻 Author
+
+**Siddharth Jagadale**
+
+-   GitHub: https://github.com/Siddharth3007Git
+-   Email: siddharthjagadale50@gmail.com
+-   LinkedIn: https://www.linkedin.com/in/siddharthjagadale/
+
+## ⭐ Support
+
+If you found this project useful, please consider starring the
+repository.
+
+------------------------------------------------------------------------
+
+Built with ❤️ using FastAPI, Docker, MySQL, Gemini AI, and Razorpay.

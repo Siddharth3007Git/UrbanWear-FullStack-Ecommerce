@@ -1,0 +1,136 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#333;
+}
+
+/* Navbar */
+
+.navbar{
+    padding:15px 0;
+}
+
+.navbar-brand{
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* Card */
+
+.card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.card-body{
+    padding:40px;
+}
+
+/* Headings */
+
+h2{
+    font-weight:700;
+}
+
+h4{
+    font-weight:600;
+}
+
+h5{
+    font-weight:600;
+}
+
+/* Product */
+
+#productContainer{
+    padding:15px 0;
+}
+
+#productContainer .d-flex{
+    align-items:center;
+}
+
+#productPrice{
+    color:#198754;
+    font-weight:bold;
+}
+
+/* Divider */
+
+hr{
+    opacity:.15;
+}
+
+/* Price Summary */
+
+p{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+#totalAmount{
+    color:#198754;
+    font-weight:700;
+}
+
+/* Pay Button */
+
+#payBtn{
+    border-radius:10px;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+#payBtn:hover{
+    transform:scale(1.02);
+}
+
+#payBtn:active{
+    transform:scale(.98);
+}
+
+/* Security */
+
+.text-center small{
+    font-size:14px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.card-body{
+    padding:25px;
+}
+
+h2{
+    font-size:28px;
+}
+
+h4{
+    font-size:20px;
+}
+
+#payBtn{
+    font-size:16px;
+}
+
+}

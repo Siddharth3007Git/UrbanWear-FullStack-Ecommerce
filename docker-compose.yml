@@ -1,29 +1,61 @@
-version: "3.9"
-
 services:
-  app:
-    build: .
-    container_name: urbanwear_app
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-    volumes:
-      - .:/app
-
   mysql:
     image: mysql:8.0
     container_name: urbanwear_mysql
-    restart: always
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: clothes_ecommerce
+
     ports:
-      - "3306:3306"
+      - "3307:3306"
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+
+  app:
+    build: .
+    container_name: urbanwear_app
+    restart: unless-stopped
+
+    ports:
+      - "8000:8000"
+
+    env_file:
+      - .env
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    volumes:
+      - ./backend/uploads:/app/backend/uploads
+
+  frontend:
+    image: nginx:1.27-alpine
+    container_name: urbanwear_frontend
+    restart: unless-stopped
+
+    depends_on:
+      - app
+
+    ports:
+      - "5500:80"
+
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./backend/uploads:/usr/share/nginx/html/uploads:ro
 
 volumes:
   mysql_data:

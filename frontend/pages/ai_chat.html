@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Shopping Assistant | UrbanWear</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="../assets/css/ai_chat.css">
+
+</head>
+
+<body>
+
+    <!-- ===========================
+            LOADER
+    ============================ -->
+
+    <div id="loader"
+         class="loader">
+
+        <div class="spinner"></div>
+
+    </div>
+
+    <!-- ===========================
+            NAVBAR
+    ============================ -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="home.html">
+
+                UrbanWear
+
+            </a>
+
+        </div>
+
+        <ul>
+
+            <li>
+
+                <a href="home.html">
+
+                    Home
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="products.html">
+
+                    Products
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="cart.html">
+
+                    Cart
+
+                    <span id="cartCount">
+
+                        0
+
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="orders.html">
+
+                    Orders
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="profile.html">
+
+                    Profile
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="ai_chat.html"
+                   class="active">
+
+                    AI Assistant
+
+                </a>
+
+            </li>
+
+        </ul>
+
+        <button id="logoutBtn"
+                class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </button>
+
+    </nav>
+
+    <!-- ===========================
+            PAGE HEADER
+    ============================ -->
+
+    <section class="page-header">
+
+        <h1>
+
+            AI Shopping Assistant
+
+        </h1>
+
+        <p>
+
+            Ask anything about products, fashion, sizes, recommendations, or your shopping experience.
+
+        </p>
+
+    </section>
+
+    <!-- ===========================
+            CHAT CONTAINER
+    ============================ -->
+
+    <section class="chat-container">
+
+        <div class="chat-card">
+
+            <!-- Chat Header -->
+
+            <div class="chat-header">
+
+                <div class="assistant-info">
+
+                    <div class="assistant-avatar">
+
+                        <i class="fa-solid fa-robot"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+
+                            UrbanWear AI
+
+                        </h2>
+
+                        <span id="statusText">
+
+                            Online
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <button id="clearChatBtn"
+                        class="clear-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear Chat
+
+                </button>
+
+            </div>
+            <!-- ===========================
+                    CHAT MESSAGES
+            ============================ -->
+
+            <div id="chatMessages"
+                 class="chat-messages">
+
+                <!-- Welcome Message -->
+
+                <div class="message ai-message">
+
+                    <div class="message-avatar">
+
+                        <i class="fa-solid fa-robot"></i>
+
+                    </div>
+
+                    <div class="message-content">
+
+                        <p>
+
+                            👋 Hello! I'm <strong>UrbanWear AI</strong>.
+
+                        </p>
+
+                        <p>
+
+                            I can help you with:
+
+                        </p>
+
+                        <ul>
+
+                            <li>👕 Product recommendations</li>
+
+                            <li>📏 Clothing size guidance</li>
+
+                            <li>🛍️ Fashion suggestions</li>
+
+                            <li>🚚 Order assistance</li>
+
+                            <li>💳 Shopping questions</li>
+
+                        </ul>
+
+                        <span class="message-time"
+                              id="welcomeTime">
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===========================
+                    TYPING INDICATOR
+            ============================ -->
+
+            <div id="typingIndicator"
+                 class="typing-indicator hidden">
+
+                <div class="message-avatar">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+                <div class="typing-bubble">
+
+                    <span></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                </div>
+
+            </div>
+
+            <!-- ===========================
+                    SUGGESTED PROMPTS
+            ============================ -->
+
+            <div class="suggestion-container">
+
+                <button class="suggestion-btn">
+
+                    👟 Recommend running shoes
+
+                </button>
+
+                <button class="suggestion-btn">
+
+                    👕 Which shirt size is best?
+
+                </button>
+
+                <button class="suggestion-btn">
+
+                    🧥 Show winter fashion tips
+
+                </button>
+
+                <button class="suggestion-btn">
+
+                    🎁 Suggest a gift under ₹3000
+
+                </button>
+
+            </div>
+
+            <!-- ===========================
+                    CHAT INPUT
+            ============================ -->
+
+            <div class="chat-input-area">
+
+                <textarea id="messageInput"
+                          rows="2"
+                          placeholder="Type your message here..."></textarea>
+
+                <button id="sendBtn"
+                        class="send-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send
+
+                </button>
+
+            </div>
+            <!-- ===========================
+                    CHAT DISCLAIMER
+            ============================ -->
+
+            <div class="chat-disclaimer">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+
+                    AI responses are generated automatically and may occasionally be inaccurate. Please verify important information before making purchase decisions.
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===========================
+            TOAST NOTIFICATION
+    ============================ -->
+
+    <div id="toast"
+         class="toast">
+
+    </div>
+
+    <!-- ===========================
+            FOOTER
+    ============================ -->
+
+    <footer>
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </footer>
+
+    <!-- ===========================
+            JAVASCRIPT
+    ============================ -->
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+
+
+    
+
+    <script src="../assets/js/ai_chat.js"></script>
+
+</body>
+
+</html>

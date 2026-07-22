@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Products | UrbanWear</title>
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+
+    <!-- CSS -->
+
+    
+    
+    <link rel="stylesheet" href="../assets/css/products.css">
+    
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ==========================================
+                NAVBAR
+=========================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <a href="home.html">
+
+            UrbanWear
+
+        </a>
+
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+
+            <a href="home.html">
+
+                Home
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="products.html"
+               class="active">
+
+                Products
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="orders.html">
+
+                Orders
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="ai_chat.html">
+
+                AI Chat
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <div class="nav-icons">
+
+        <a href="cart.html">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+        </a>
+
+        <a href="profile.html">
+
+            <i class="fa-solid fa-user"></i>
+
+        </a>
+
+        <button id="logoutBtn">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>
+
+<!-- ==========================================
+            PAGE HEADER
+=========================================== -->
+
+<section class="page-header">
+
+    <h1>
+
+        Explore Our Collection
+
+    </h1>
+
+    <p>
+
+        Discover premium sneakers from top brands.
+
+    </p>
+
+</section>
+
+<!-- ==========================================
+            FILTER SECTION
+=========================================== -->
+
+<section class="filters">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products...">
+
+    </div>
+
+    <select id="categoryFilter">
+
+        <option value="">All Categories</option>
+
+        <option value="NIKE">NIKE</option>
+
+        <option value="ADIDAS">ADIDAS</option>
+
+        <option value="PUMA">PUMA</option>
+
+        <option value="NEW BALANCE">NEW BALANCE</option>
+
+        <option value="REEBOK">REEBOK</option>
+
+        <option value="CONVERSE">CONVERSE</option>
+
+        <option value="VANS">VANS</option>
+
+        <option value="ASICS">ASICS</option>
+
+    </select>
+
+    <input
+        type="number"
+        id="minPrice"
+        placeholder="Min Price">
+
+    <input
+        type="number"
+        id="maxPrice"
+        placeholder="Max Price">
+
+    <button
+        id="filterBtn">
+
+        Apply Filter
+
+    </button>
+
+</section>
+
+<!-- ==========================================
+            PRODUCT SECTION
+=========================================== -->
+
+<section class="products-section">
+
+    <div
+        id="productsContainer"
+        class="products-grid">
+
+        <!-- Dynamic Product Cards -->
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+            PAGINATION
+=========================================== -->
+
+<section class="pagination">
+
+    <button
+        id="prevBtn">
+
+        <i class="fa-solid fa-angle-left"></i>
+
+        Previous
+
+    </button>
+
+    <span id="pageNumber">
+
+        Page 1
+
+    </span>
+
+    <button
+        id="nextBtn">
+
+        Next
+
+        <i class="fa-solid fa-angle-right"></i>
+
+    </button>
+
+</section>
+
+<!-- ==========================================
+                FOOTER
+=========================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <h2>
+
+            UrbanWear
+
+        </h2>
+
+        <p>
+
+            Premium Sneakers & Fashion
+
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#">
+
+                About
+
+            </a>
+
+            <a href="#">
+
+                Contact
+
+            </a>
+
+            <a href="#">
+
+                Privacy Policy
+
+            </a>
+
+            <a href="#">
+
+                Terms
+
+            </a>
+
+        </div>
+
+        <div class="social-icons">
+
+            <a href="#">
+
+                <i class="fab fa-github"></i>
+
+            </a>
+
+            <a href="#">
+
+                <i class="fab fa-linkedin"></i>
+
+            </a>
+
+        </div>
+
+        <p>
+
+            © 2026 UrbanWear. All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- ==========================================
+                JAVASCRIPT
+=========================================== -->
+
+
+<script src="../assets/js/api.js"></script>
+
+<script src="../assets/js/utils.js"></script>
+
+<script src="../assets/js/auth.js"></script>
+
+<script src="../assets/js/navbar.js"></script>
+
+<script src="../assets/js/products.js"></script>
+
+</body>
+
+</html>

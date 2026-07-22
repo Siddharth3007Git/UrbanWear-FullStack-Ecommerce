@@ -1,18 +1,38 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
+from sqlalchemy.exc import OperationalError
+import time
 
-# ---------------- API Routers ---------------- #
+from backend.database.connection import Base, engine
 
+# ==========================
+# Models
+# ==========================
+from backend.models.product import Product
+from backend.models.customer import Customer
+from backend.models.order import Order
+from backend.models.cart import Cart
+from backend.models.transaction import Transaction
+from backend.models.user import User
+from backend.models.order_item import OrderItem
+from backend.routers.chat_routes import router as chat_router
+
+# ==========================
+# Routers
+# ==========================
 from backend.routers.product_routes import router as product_router
 from backend.routers.customer_routes import router as customer_router
 from backend.routers.order_routes import router as order_router
+from backend.routers.cart_routes import router as cart_router
 from backend.routers.transaction_routes import router as transaction_router
 from backend.routers.auth_routes import router as auth_router
-from backend.routers.cart_routes import router as cart_router
+from backend.routers.recommendation_routes import router as recommendation_router
+from backend.routers.admin_routes import router as admin_router
+from backend.routers.email_routes import router as email_router
+from backend.utils.exception_handler import register_exception_handlers
+from backend.routers.profile_routes import router as profile_router
+from backend.routers.payment_routes import router as payment_router
 
-# ---------------- FastAPI App ---------------- #
 
 app = FastAPI(
     title="UrbanWear API",
@@ -20,8 +40,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# ---------------- CORS ---------------- #
+register_exception_handlers(app)
 
+# ==========================
+# CORS
+# ==========================
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -30,149 +53,45 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ---------------- Static Files ---------------- #
+# ==========================
+# Create Tables
+# ==========================
+@app.on_event("startup")
+def startup():
+    print("Waiting for MySQL...")
 
-app.mount(
-    "/static",
-    StaticFiles(directory="frontend/static"),
-    name="static"
-)
+    for i in range(30):
+        try:
+            Base.metadata.create_all(bind=engine)
+            print("Database connected successfully!")
+            return
+        except OperationalError:
+            print(f"MySQL not ready... retry {i + 1}/30")
+            time.sleep(2)
 
-# ---------------- Templates ---------------- #
+    raise RuntimeError("Could not connect to MySQL.")
 
-templates = Jinja2Templates(directory="frontend/templates")
-
-# ---------------- API Routers ---------------- #
-
-app.include_router(product_router)
+# ==========================
+# Register Routers
+# ==========================
+app.include_router(auth_router)
 app.include_router(customer_router)
+app.include_router(product_router)
+app.include_router(cart_router)
 app.include_router(order_router)
 app.include_router(transaction_router)
-app.include_router(auth_router)
-app.include_router(cart_router)
+app.include_router(recommendation_router)
+app.include_router(chat_router)
+app.include_router(admin_router)
+app.include_router(email_router)
+app.include_router(profile_router)
+app.include_router(payment_router)
 
-# =====================================================
-#                   WEBSITE ROUTES
-# =====================================================
-
-@app.get("/", include_in_schema=False)
-def root(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="home.html"
-    )
-
-
-@app.get("/home", include_in_schema=False)
-def home(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="home.html"
-    )
-
-
-@app.get("/products-page", include_in_schema=False)
-def products_page(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="products.html"
-    )
-
-
-@app.get("/product-details", include_in_schema=False)
-def product_details(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="product_details.html"
-    )
-
-
-@app.get("/login-page", include_in_schema=False)
-def login_page(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="login.html"
-    )
-
-
-@app.get("/register-page", include_in_schema=False)
-def register_page(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="register.html"
-    )
-
-
-@app.get("/cart-page", include_in_schema=False)
-def cart_page(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="cart.html"
-    )
-
-
-@app.get("/checkout-page", include_in_schema=False)
-def checkout_page(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="checkout.html"
-    )
-
-# =====================================================
-#      Compatibility Routes (Old Frontend Support)
-# =====================================================
-
-@app.get("/home.html", include_in_schema=False)
-def home_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="home.html"
-    )
-
-
-@app.get("/products.html", include_in_schema=False)
-def products_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="products.html"
-    )
-
-
-@app.get("/product_details.html", include_in_schema=False)
-def product_details_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="product_details.html"
-    )
-
-
-@app.get("/login.html", include_in_schema=False)
-def login_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="login.html"
-    )
-
-
-@app.get("/register.html", include_in_schema=False)
-def register_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="register.html"
-    )
-
-
-@app.get("/cart.html", include_in_schema=False)
-def cart_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="cart.html"
-    )
-
-
-@app.get("/checkout.html", include_in_schema=False)
-def checkout_html(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="checkout.html"
-    )
+# ==========================
+# Home
+# ==========================
+@app.get("/")
+def home():
+    return {
+        "message": "UrbanWear API Running Successfully 🚀"
+    }
