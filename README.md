@@ -136,7 +136,7 @@ Open:
 
 🐙 **GitHub:** https://github.com/Siddharth3007Git
 
-💼 **LinkedIn:** *Add your LinkedIn profile here*
+💼 **LinkedIn:** https://www.linkedin.com/in/siddharthjagadale?utm_source=share_via&utm_content=profile&utm_medium=member_android
 
 ---
 
