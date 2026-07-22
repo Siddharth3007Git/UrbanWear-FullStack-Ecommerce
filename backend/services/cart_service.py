@@ -1,57 +1,67 @@
 from fastapi import HTTPException
-
 from backend.models.cart import Cart
 from backend.models.product import Product
 from backend.models.user import User
 
 
-# ============================
-# Get Logged-in User Cart
-# ============================
-def get_my_cart_service(user_id, db):
+# ==========================================
+# GET MY CART
+# ==========================================
+def get_my_cart_service(user_id: int, db):
 
-    cart_items = db.query(Cart).filter(
-        Cart.user_id == user_id
-    ).all()
+    cart_items = (
+        db.query(Cart)
+        .filter(Cart.user_id == user_id)
+        .all()
+    )
 
     total_price = 0
-    items = []
+    data = []
 
     for item in cart_items:
 
-        product = db.query(Product).filter(
-            Product.id == item.product_id
-        ).first()
+        product = (
+            db.query(Product)
+            .filter(Product.id == item.product_id)
+            .first()
+        )
 
-        if product:
+        if not product:
+            continue
 
-            subtotal = product.price * item.quantity
-            total_price += subtotal
+        subtotal = product.price * item.quantity
+        total_price += subtotal
 
-            items.append({
-                "cart_id": item.id,
-                "product_id": product.id,
-                "product_name": product.name,
+        data.append({
+            "cart_id": item.id,
+            "quantity": item.quantity,
+
+            "product": {
+                "id": product.id,
+                "name": product.name,
+                "category": product.category,
                 "price": product.price,
-                "quantity": item.quantity,
-                "subtotal": subtotal
-            })
+                "stock": product.stock,
+                "image": product.image
+            },
+
+            "subtotal": subtotal
+        })
 
     return {
-        "total_items": len(items),
-        "total_price": total_price,
-        "items": items
+        "success": True,
+        "data": data,
+        "total_items": len(data),
+        "total_price": total_price
     }
 
 
-# ============================
-# Add Product To Cart
-# ============================
-def add_to_cart_service(cart, user_id, db):
+# ==========================================
+# ADD TO CART
+# ==========================================
+def add_to_cart_service(cart, user_id: int, db):
 
-    user = db.query(User).filter(
-        User.id == user_id
-    ).first()
+    user = db.query(User).filter(User.id == user_id).first()
 
     if not user:
         raise HTTPException(
@@ -59,9 +69,11 @@ def add_to_cart_service(cart, user_id, db):
             detail="User not found"
         )
 
-    product = db.query(Product).filter(
-        Product.id == cart.product_id
-    ).first()
+    product = (
+        db.query(Product)
+        .filter(Product.id == cart.product_id)
+        .first()
+    )
 
     if not product:
         raise HTTPException(
@@ -69,25 +81,38 @@ def add_to_cart_service(cart, user_id, db):
             detail="Product not found"
         )
 
-    if product.stock < cart.quantity:
+    if product.stock <= 0:
         raise HTTPException(
             status_code=400,
-            detail="Insufficient stock"
+            detail="Product is out of stock"
         )
 
-    existing_item = db.query(Cart).filter(
-        Cart.user_id == user_id,
-        Cart.product_id == cart.product_id
-    ).first()
+    existing = (
+        db.query(Cart)
+        .filter(
+            Cart.user_id == user_id,
+            Cart.product_id == cart.product_id
+        )
+        .first()
+    )
 
-    if existing_item:
+    if existing:
 
-        existing_item.quantity += cart.quantity
+        if existing.quantity + cart.quantity > product.stock:
+            raise HTTPException(
+                status_code=400,
+                detail="Maximum stock reached"
+            )
+
+        existing.quantity += cart.quantity
 
         db.commit()
-        db.refresh(existing_item)
+        db.refresh(existing)
 
-        return existing_item
+        return {
+            "success": True,
+            "message": "Cart updated successfully"
+        }
 
     new_item = Cart(
         user_id=user_id,
@@ -99,18 +124,25 @@ def add_to_cart_service(cart, user_id, db):
     db.commit()
     db.refresh(new_item)
 
-    return new_item
+    return {
+        "success": True,
+        "message": "Product added to cart successfully"
+    }
 
 
-# ============================
-# Update Quantity
-# ============================
+# ==========================================
+# UPDATE CART
+# ==========================================
 def update_cart_service(cart_id, quantity, user_id, db):
 
-    cart_item = db.query(Cart).filter(
-        Cart.id == cart_id,
-        Cart.user_id == user_id
-    ).first()
+    cart_item = (
+        db.query(Cart)
+        .filter(
+            Cart.id == cart_id,
+            Cart.user_id == user_id
+        )
+        .first()
+    )
 
     if not cart_item:
         raise HTTPException(
@@ -118,9 +150,23 @@ def update_cart_service(cart_id, quantity, user_id, db):
             detail="Cart item not found"
         )
 
-    product = db.query(Product).filter(
-        Product.id == cart_item.product_id
-    ).first()
+    product = (
+        db.query(Product)
+        .filter(Product.id == cart_item.product_id)
+        .first()
+    )
+
+    if not product:
+        raise HTTPException(
+            status_code=404,
+            detail="Product not found"
+        )
+
+    if quantity < 1:
+        raise HTTPException(
+            status_code=400,
+            detail="Quantity must be greater than zero"
+        )
 
     if quantity > product.stock:
         raise HTTPException(
@@ -133,18 +179,25 @@ def update_cart_service(cart_id, quantity, user_id, db):
     db.commit()
     db.refresh(cart_item)
 
-    return cart_item
+    return {
+        "success": True,
+        "message": "Cart updated successfully"
+    }
 
 
-# ============================
-# Delete Item
-# ============================
+# ==========================================
+# DELETE ITEM
+# ==========================================
 def delete_cart_service(cart_id, user_id, db):
 
-    cart_item = db.query(Cart).filter(
-        Cart.id == cart_id,
-        Cart.user_id == user_id
-    ).first()
+    cart_item = (
+        db.query(Cart)
+        .filter(
+            Cart.id == cart_id,
+            Cart.user_id == user_id
+        )
+        .first()
+    )
 
     if not cart_item:
         raise HTTPException(
@@ -156,24 +209,25 @@ def delete_cart_service(cart_id, user_id, db):
     db.commit()
 
     return {
-        "message": "Item removed from cart"
+        "success": True,
+        "message": "Item removed successfully"
     }
 
 
-# ============================
-# Clear Cart
-# ============================
+# ==========================================
+# CLEAR CART
+# ==========================================
 def clear_cart_service(user_id, db):
 
-    cart_items = db.query(Cart).filter(
-        Cart.user_id == user_id
-    ).all()
-
-    for item in cart_items:
-        db.delete(item)
+    (
+        db.query(Cart)
+        .filter(Cart.user_id == user_id)
+        .delete()
+    )
 
     db.commit()
 
     return {
+        "success": True,
         "message": "Cart cleared successfully"
     }

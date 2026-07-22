@@ -2,7 +2,7 @@
         UrbanWear Cart Page
 ========================================== */
 
-const API = API_URL;
+const API = API_BASE_URL;
 
 // DOM Elements
 const loader = document.getElementById("loader");
@@ -51,12 +51,14 @@ function checkLogin() {
         LOAD CART
 ========================================== */
 
+/* ==========================================
+        LOAD CART
+========================================== */
+
 async function loadCart() {
 
     loader.style.display = "flex";
-
     cartSection.style.display = "none";
-
     emptyCart.style.display = "none";
 
     try {
@@ -64,40 +66,38 @@ async function loadCart() {
         const token = localStorage.getItem("access_token");
 
         const response = await fetch(`${API}/cart/`, {
-
             headers: {
-
                 "Authorization": `Bearer ${token}`
-
             }
-
         });
-
-        if (!response.ok) {
-
-            throw new Error("Unable to load cart.");
-
-        }
 
         const result = await response.json();
 
-        // Supports both response formats
-        cart = result.data || result;
+        if (!response.ok) {
+            throw new Error(result.detail || "Unable to load cart.");
+        }
+
+        // Backend always returns:
+        // {
+        //    success: true,
+        //    data: [...],
+        //    total_items: ...,
+        //    total_price: ...
+        // }
+
+        cart = Array.isArray(result.data) ? result.data : [];
 
         loader.style.display = "none";
 
-        if (!cart || cart.length === 0) {
-
+        if (cart.length === 0) {
             emptyCart.style.display = "block";
-
+            updateSummary();
             return;
-
         }
 
         cartSection.style.display = "block";
 
         renderCart();
-
         updateSummary();
 
     }
@@ -108,10 +108,10 @@ async function loadCart() {
 
         loader.style.display = "none";
 
+        emptyCart.style.display = "block";
+
         showToast(
-
-            "Failed to load cart.",
-
+            error.message,
             "error"
         );
     }
@@ -126,20 +126,15 @@ function renderCart() {
 
     cart.forEach(item => {
 
-        // Support different backend response formats
-        const product = item.product || item;
+        const product = item.product;
 
         const image = product.image || "default-product.png";
+        const name = product.name;
+        const category = product.category;
+        const price = Number(product.price);
+        const stock = product.stock;
 
-        const name = product.name || "Product";
-
-        const category = product.category || "Category";
-
-        const price = Number(product.price || 0);
-
-        const stock = product.stock || 0;
-
-        const quantity = item.quantity || 1;
+        const quantity = item.quantity;
 
         const subtotal = price * quantity;
 
@@ -149,83 +144,53 @@ function renderCart() {
 
         card.innerHTML = `
 
-            <div class="cart-item-image">
+        <div class="cart-item-image">
+            <img
+                src="../assets/images/${image}"
+                alt="${name}"
+                onerror="this.src='../assets/images/default-product.png'">
+        </div>
 
-                <img
-                    src="../assets/images/${image}"
-                    alt="${name}"
-                    onerror="this.src='../assets/images/default-product.png'">
+        <div class="cart-item-details">
 
-            </div>
+            <h3>${name}</h3>
 
-            <div class="cart-item-details">
+            <p>${category}</p>
 
-                <h3>${name}</h3>
+            <p>₹${price.toLocaleString("en-IN")}</p>
 
-                <p class="cart-category">
-
-                    ${category}
-
-                </p>
-
-                <p class="cart-price">
-
-                    ₹${price.toLocaleString("en-IN")}
-
-                </p>
-
-                <div class="quantity-wrapper">
-
-                    <button
-                        class="quantity-btn"
-                        onclick="decreaseQuantity(${item.cart_id})">
-
-                        -
-
-                    </button>
-
-                    <input
-                        type="number"
-                        class="quantity-input"
-                        value="${quantity}"
-                        readonly>
-
-                    <button
-                        class="quantity-btn"
-                        onclick="increaseQuantity(${item.cart_id}, ${stock})">
-
-                        +
-
-                    </button>
-
-                </div>
-
-                <p class="item-total">
-
-                    Total :
-                    ₹${subtotal.toLocaleString("en-IN")}
-
-                </p>
-
-                <p class="stock ${stock > 0 ? 'in' : 'out'}">
-
-                    ${stock > 0
-                        ? `In Stock (${stock})`
-                        : "Out of Stock"}
-
-                </p>
+            <div class="quantity-wrapper">
 
                 <button
-                    class="remove-btn"
-                    onclick="removeCartItem(${item.cart_id})">
+                    class="quantity-btn"
+                    onclick="decreaseQuantity(${item.cart_id})">
+                    -
+                </button>
 
-                    <i class="fa-solid fa-trash"></i>
+                <input
+                    class="quantity-input"
+                    value="${quantity}"
+                    readonly>
 
-                    Remove
-
+                <button
+                    class="quantity-btn"
+                    onclick="increaseQuantity(${item.cart_id}, ${stock})">
+                    +
                 </button>
 
             </div>
+
+            <p>Total : ₹${subtotal.toLocaleString("en-IN")}</p>
+
+            <button
+                class="remove-btn"
+                onclick="removeCartItem(${item.cart_id})">
+
+                Remove
+
+            </button>
+
+        </div>
 
         `;
 

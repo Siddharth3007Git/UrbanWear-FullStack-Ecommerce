@@ -2,8 +2,7 @@
         API CONFIGURATION
 ========================================== */
 
-const API = API_URL;
-
+const API = API_BASE_URL;
 /* ==========================================
         DOM ELEMENTS
 ========================================== */
@@ -778,31 +777,15 @@ placeOrderBtn.addEventListener("click", async (e) => {
 
     e.preventDefault();
 
-    if (isSubmitting) {
+    console.log("STEP 1");
 
-        return;
+    console.log(validateForm());
 
-    }
+    console.log("STEP 2");
 
-    if (!validateForm()) {
+    await placeOrder();
 
-        return;
-
-    }
-
-    isSubmitting = true;
-
-    try {
-
-        await placeOrder();
-
-    }
-
-    finally {
-
-        isSubmitting = false;
-
-    }
+    console.log("STEP 3");
 
 });
 

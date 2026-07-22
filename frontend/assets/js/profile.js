@@ -6,7 +6,7 @@
                     API CONFIGURATION
 ========================================================== */
 
-const API = API_URL;
+const API = API_BASE_URL;
 
 function getAuthHeaders() {
     const token = localStorage.getItem("access_token") || localStorage.getItem("token");

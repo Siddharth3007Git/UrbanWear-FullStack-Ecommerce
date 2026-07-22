@@ -2,7 +2,7 @@
         API CONFIGURATION
 ========================================== */
 
-const API = API_URL;
+const API = API_BASE_URL;
 
 /* ==========================================
         DOM ELEMENTS

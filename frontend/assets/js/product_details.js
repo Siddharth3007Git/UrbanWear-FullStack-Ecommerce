@@ -2,8 +2,7 @@
         UrbanWear Product Details
 ========================================== */
 
-const API = API_URL;
-
+const API = API_BASE_URL;
 // Product ID
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
